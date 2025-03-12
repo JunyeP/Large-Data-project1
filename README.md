@@ -44,19 +44,14 @@ For each `k`, the following values were recorded: `xS`, hash value, total time e
 - **Number of Trials:** *(To be determined)*
 
 ### Cluster Configuration:
-- **Number of Machines:** *(Specify)*
-- **Number of Cores per Machine:** *(Specify)*
-- **Type of Cores:** *(Specify, e.g., Intel Xeon, AMD EPYC, etc.)*
-- **Total vCPUs Used:** *(Specify)*
+- **Master node:** Standard (1 master, N workers)
+- **Machine type:** n2-standard-2 (2 vCPU, 1 core, 8 GB memory)
+- **Worker nodes:** 2
+- **Machine type:** n2-standard-2 (2 vCPU, 1 core, 8 GB memory)
 
 ### Process for Estimating the Number of Trials:
-To estimate the number of trials required for finding the nonce, the previous results were analyzed. Observing the exponential increase in trials for each `k`, the expected number of trials for `k = 7` was estimated by extrapolating the pattern:
+Observing the exponential increase in trials for each `k`, the expected number of trials for `k = 7` was estimated by extrapolating the pattern: 10^9
 
-\[
-\text{Estimated trials} \approx 10^8 \times 10 = 10^9
-\]
-
-By distributing the workload across multiple machines and cores, the total computation time was significantly reduced.
 
 ---
 
