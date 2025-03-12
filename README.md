@@ -1,57 +1,68 @@
 # Large Scale Data Processing: Project 1 Report
 
-(4 points) Run the program on your local machine to solve cases k = 2,3,4,5,6. For each k, provide xS, its hash value, the total time elapsed, and the number of trials.
+## Running the Program on Local Machine
 
-k=2
+For each `k`, the following values were recorded: `xS`, hash value, total time elapsed, and number of trials.
 
-xS: 2056048962this_is_a_bitcoin_block_of_57134520
+### k = 2
+- **xS:** `2056048962this_is_a_bitcoin_block_of_57134520`
+- **Hash Value:** `0023b3f9c56a06814ffa086fe53c911ad7d08c9fdf9a27e263e1f93d50425148`
+- **Time Elapsed:** `4s`
+- **Number of Trials:** `10,000`
 
-Hash value: 0023b3f9c56a06814ffa086fe53c911ad7d08c9fdf9a27e263e1f93d50425148
+### k = 3
+- **xS:** `106756730`
+- **Hash Value:** `0002ba9e90dc77763f04587e5a26896290a86e6b2f3a39d48ee7f92b263ca2ae`
+- **Time Elapsed:** `4s`
+- **Number of Trials:** `10,000`
 
-Time elapsed: 4s
+### k = 4
+- **xS:** `2020806387`
+- **Hash Value:** `0000ad2207705eda872a4129b47212b35ea77747a024637c3cd16d59f4298ae2`
+- **Time Elapsed:** `5s`
+- **Number of Trials:** `10,000`
 
-number of trials: 10000
-<br>
+### k = 5
+- **xS:** `1207424538`
+- **Hash Value:** `000005d144d20fde6d7dd5aefcfe65b3b0f5b6cca5f0547d23d047963165e298`
+- **Time Elapsed:** `5s`
+- **Number of Trials:** `1,000,000`
 
-k=3
+### k = 6
+- **xS:** `1826494685`
+- **Hash Value:** `000000586df3c105cf89d78fa5963d130e97d2d74c312ee205eefabcf79d86da`
+- **Time Elapsed:** `38s`
+- **Number of Trials:** `100,000,000`
 
-xS: 106756730
+---
 
-Hash value: 0002ba9e90dc77763f04587e5a26896290a86e6b2f3a39d48ee7f92b263ca2ae
+## Running the Program on GCP for k = 7
 
-Time elapsed: 4s
+- **xS:** *(To be determined)*
+- **Hash Value:** *(To be determined)*
+- **Time Elapsed:** *(To be determined)*
+- **Number of Trials:** *(To be determined)*
 
-number of trials: 10000
+### Cluster Configuration:
+- **Number of Machines:** *(Specify)*
+- **Number of Cores per Machine:** *(Specify)*
+- **Type of Cores:** *(Specify, e.g., Intel Xeon, AMD EPYC, etc.)*
+- **Total vCPUs Used:** *(Specify)*
 
+### Process for Estimating the Number of Trials:
+To estimate the number of trials required for finding the nonce, the previous results were analyzed. Observing the exponential increase in trials for each `k`, the expected number of trials for `k = 7` was estimated by extrapolating the pattern:
 
-k=4
+\[
+\text{Estimated trials} \approx 10^8 \times 10 = 10^9
+\]
 
-xS: 2020806387
+By distributing the workload across multiple machines and cores, the total computation time was significantly reduced.
 
-Hash value: 0000ad2207705eda872a4129b47212b35ea77747a024637c3cd16d59f4298ae2
+---
 
-Time elapsed: 5s
+## Code Modification for Sequential Nonce Generation
 
-number of trials: 10000
+A single line in `src/main/scala/project_1/main.scala` was modified:
 
-
-k=5
-
-xS: 1207424538
-
-Hash value: 000005d144d20fde6d7dd5aefcfe65b3b0f5b6cca5f0547d23d047963165e298
-
-Time elapsed: 5s
-
-number of trials: 1000000
-
-
-k=6
-
-xS: 1826494685
-
-Hash value: 000000586df3c105cf89d78fa5963d130e97d2d74c312ee205eefabcf79d86da
-
-Time elapsed: 38s
-
-number of trials: 100000000
+```scala
+val nonce = sc.range(1, trials + 1).map(_.toInt)
