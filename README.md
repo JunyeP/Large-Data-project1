@@ -38,10 +38,10 @@ For each `k`, the following values were recorded: `xS`, hash value, total time e
 
 ## Running the Program on GCP for k = 7
 
-- **xS:** *(To be determined)*
-- **Hash Value:** *(To be determined)*
-- **Time Elapsed:** *(To be determined)*
-- **Number of Trials:** *(To be determined)*
+- **xS:** `750375693`
+- **Hash Value:** `000000076af5511a0ebca5b15cf877b01d48d9b59878be38205635650b8557f3`
+- **Time Elapsed:** `2596s`
+- **Number of Trials:** `999,999,999`
 
 ### Cluster Configuration:
 - **Master node:** Standard (1 master, N workers)
