@@ -1,5 +1,6 @@
 # Large Scale Data Processing: Project 1 Report
-##Member: Junye Pan
+
+Member: Junye Pan
 
 ## Running the Program on Local Machine
 
