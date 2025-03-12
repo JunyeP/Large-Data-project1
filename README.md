@@ -62,7 +62,13 @@ By distributing the workload across multiple machines and cores, the total compu
 
 ## Code Modification for Sequential Nonce Generation
 
-A single line in `src/main/scala/project_1/main.scala` was modified:
+The sequential approach is generally more efficient.
+
+Using a sequential approach guarantees that every number from 1 to n is tried exactly once. This avoids the possibility of duplicate values that might occur with a random approach. 
+
+A single line in was modified:
 
 ```scala
 val nonce = sc.range(1, trials + 1).map(_.toInt)
+
+
